@@ -1,0 +1,72 @@
+---
+title: "BOJ - [Basic Algebra - 2846 오르막길] - Bronze II 🥉"
+description: "https://www.acmicpc.net/problem/2846 난이도가 어렵지 않을거라고 생각하고 덤볐다가 오히려 시간이 많이 걸리고 만 문제다. 수열의 증가하는 부분인지 검사하고 증가하는 부분의 양끝의 값을 저장하고, 증가하는 함수안에서도 더 차이가 큰 것을 구별해야했다. 따..."
+date: "2022-01-12"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Bronze", "Basic_Algebra"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2022-01-12-2846/2846.png"
+---
+
+# 문제
+![](/images/posts/2022-01-12-2846/2846.png)
+[https://www.acmicpc.net/problem/2846](https://www.acmicpc.net/problem/2846)
+
+# 설명
+난이도가 어렵지 않을거라고 생각하고 덤볐다가 오히려 시간이 많이 걸리고 만 문제다. 수열의 증가하는 부분인지 검사하고 증가하는 부분의 양끝의 값을 저장하고, 증가하는 함수안에서도 더 차이가 큰 것을 구별해야했다. 따라서 이 세가지를 고려한 소스를 짜야했는데 이로인해 소스가 제대로 정리되지 않고 맞히긴 했지만 스파게티 코드가 되어버린듯 하다. 나중에 실력이 어느정도 향상되면 Basic Algebra를 복습겸으로 다시 더 간결한 코드로 풀어보는 것도 좋을 것 같다.
+
+# 코드
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int start = 0, end = 0, temp_start, temp_end;
+void save()
+{
+	if (end - start < temp_end - temp_start)
+	{
+		start = temp_start;
+		end = temp_end;
+	}
+}
+int main()
+{
+	int n, array[1000], increase = 0;
+	scanf("%d", &n);
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d", &array[i]);
+		if (i != 0)
+		{
+			if (array[i - 1] < array[i])
+			{
+				if(increase  == 0)
+					temp_start = array[i - 1];
+				if (i == n-1)
+				{
+					temp_end = array[i];
+					save();
+				}
+				increase++;
+			}
+			else if (array[i - 1] >= array[i])
+			{
+				if (increase != 0)
+				{
+					if (i != n-1)
+						temp_end = array[i - 1];
+					else
+						temp_end = array[i];
+					save();
+					increase = 0;	
+				}
+			}
+			
+		}
+	}
+	printf("%d", end-start);
+	return 0;
+}
+```

@@ -1,0 +1,44 @@
+---
+title: "BOJ - [Basic Algebra - 9085 더하기] - BronzeIII🥉"
+description: "https://www.acmicpc.net/problem/9085 그냥 각 케이스별로 총합구하는 문제. 더이상의 설명은 생략한다."
+date: "2021-12-20"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Bronze", "Basic_Algebra"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2021-12-20-9085/9085.png"
+---
+
+# 문제
+![](/images/posts/2021-12-20-9085/9085.png)
+[https://www.acmicpc.net/problem/9085](https://www.acmicpc.net/problem/9085)
+
+# 설명
+그냥 각 케이스별로 총합구하는 문제.
+더이상의 설명은 생략한다.
+
+# 코드
+
+```c
+#include <stdio.h>
+
+int main() {
+    int n;
+    scanf("%d",&n);
+    for (int i=0; i<n; i++)
+    {
+        int case_amount, result=0;
+        scanf("%d",&case_amount);
+        for(int j=0; j<case_amount; j++)
+        {
+            int temp;
+            scanf("%d",&temp);
+            result += temp;
+        }
+        printf("%d\n",result);
+    }
+    return 0;
+}
+
+```

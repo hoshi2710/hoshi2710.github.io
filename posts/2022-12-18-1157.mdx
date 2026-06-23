@@ -1,0 +1,70 @@
+---
+title: "BOJ - [String - 1157 단어 공부 ] - BRONZE I 🥉"
+description: "https://www.acmicpc.net/problem/1157 위와 같은 코드로  for문에 strlen 함수를 활용하면 반복문이 반복될때마다 strlen 함수를 통해서 계속 문자열의 길이를 구해오기떄문에 시간이 더 오래걸리게 된다."
+date: "2022-12-18"
+category: "백준"
+tags: ["백준", "String", "백준_Bronze"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2022-12-18-1157/1157.png"
+---
+
+# 문제 
+![](/images/posts/2022-12-18-1157/1157.png)
+[https://www.acmicpc.net/problem/1157](https://www.acmicpc.net/problem/1157)
+
+# 설명
+
+```c
+for (int i=0; i<strlen(var); i++){
+	...
+}
+```
+
+위와 같은 코드로  for문에 strlen 함수를 활용하면 
+
+반복문이 반복될때마다 strlen 함수를 통해서 계속 문자열의 길이를 구해오기떄문에 
+
+**시간이 더 오래걸리게 된다.**
+
+미리 다른 변수에 **strlen 함수**를 통해서 문자열의 길이를 구한다음 
+
+그 값을 활용하는게 시간단축에 더 도움이 된다.
+
+**참고 자료 : [https://www.acmicpc.net/board/view/102628](https://www.acmicpc.net/board/view/102628)
+문제 : [https://www.acmicpc.net/problem/1157](https://www.acmicpc.net/problem/1157)**
+
+# 코드
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char inp = '\0';
+    int count[26] = { 0 },max=0,finded=0,chr=0;
+    while (inp != '\n')
+    {
+        inp = getchar();
+        count[inp - (inp >= 'a' && inp <= 'z' ? 'a' : 'A')] += 1;
+    }
+    for (int i = 0; i < 26; i++)
+        if(count[i] != 0)
+            if (max < count[i])
+            {
+                max = count[i];
+                chr = i + 'A';
+            }
+
+    for (int i = 0; i < 26; i++)
+    {
+        finded += max == count[i] ? 1 : 0;
+        if (finded > 1)
+            break;
+    }
+    printf("%c", finded > 1 ? '?' : chr);
+}
+```

@@ -1,0 +1,63 @@
+---
+title: "BOJ - [Basic Algebra - 2490 윷놀이] - BronzeIII🥉"
+description: "https://www.acmicpc.net/problem/2490 문제 제대로 안읽고 1이랑0을 거꾸로 판정해가지고 수정했었음. 알고리즘 자체는 어렵지 않고 3개의 케이스를 입력하기 위한 중첩 for문 하나랑 다시 도, 개, 걸, 윷, 모 를 판정하기 위한 for문 두개로 나뉘어졌..."
+date: "2021-12-18"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Bronze", "Basic_Algebra"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2021-12-18-2490/2490.png"
+---
+
+# 문제
+![](/images/posts/2021-12-18-2490/2490.png)
+[https://www.acmicpc.net/problem/2490](https://www.acmicpc.net/problem/2490)
+
+# 설명
+문제 제대로 안읽고 1이랑0을 거꾸로 판정해가지고 수정했었음. 알고리즘 자체는 어렵지 않고 3개의 케이스를 입력하기 위한 중첩 for문 하나랑 다시 도, 개, 걸, 윷, 모 를 판정하기 위한 for문 두개로 나뉘어졌으며 판정은 switch문으로 분류하였다. 중첩 for문 에서 입력을 받으면서 뒤집어진 윷의 갯수를 실시간으로 샛다는 것 제외하고는 더 설명할 것이 없을 정도로 쉬운문제다.
+
+# 코드
+
+```c
+#include <stdio.h>
+
+int main() {
+    int count[3]={0,0,0};
+    
+    for (int j=0; j<3; j++)
+    {
+        for (int i=0; i<4; i++)
+        {
+            int temp;
+            scanf("%d",&temp);
+            if(temp == 0)
+                count[j]++;
+        }
+    }
+    for (int j=0; j<3; j++)
+    {
+        switch (count[j]) {
+            case 0:
+                printf("E");
+                break;
+            case 1:
+                printf("A");
+                break;
+            case 2:
+                printf("B");
+                break;
+            case 3:
+                printf("C");
+                break;
+            case 4:
+                printf("D");
+                break;
+            default:
+                break;
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```

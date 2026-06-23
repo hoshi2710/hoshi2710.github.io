@@ -1,0 +1,39 @@
+---
+title: "BOJ - [Basic Algebra - 5565 영수증] - Bronze III 🥉"
+description: "https://www.acmicpc.net/problem/5565 책 9 권의 가격이 각각 주어지고 책 10 권의 총 가격이 주어지므로 총가격을 tot변수에 저장하고 나머지 책들의 가격을 mod변수에 for문을 이용해 9 번 반복시켜 더하도록 하고 결과로 tot-mod 를 출력하도..."
+date: "2022-01-05"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Bronze", "Basic_Algebra"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2022-01-05-5565/5565.png"
+---
+
+# 문제
+![](/images/posts/2022-01-05-5565/5565.png)
+[https://www.acmicpc.net/problem/5565](https://www.acmicpc.net/problem/5565)
+
+# 설명
+책 9 권의 가격이 각각 주어지고 책 10 권의 총 가격이 주어지므로 총가격을 tot변수에 저장하고 나머지 책들의 가격을 mod변수에 for문을 이용해 9 번 반복시켜 더하도록 하고 결과로 tot-mod 를 출력하도록 하였다.
+
+# 코드
+
+```c
+#include <stdio.h>
+
+int main() {
+    int tot,mod=0;
+    scanf("%d",&tot);
+    for (int i=0; i<9; i++)
+    {
+        int temp;
+        scanf("%d",&temp);
+        mod += temp;
+    }
+    printf("%d",tot-mod);
+    
+    return 0;
+}
+
+```

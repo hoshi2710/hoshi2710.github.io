@@ -1,0 +1,45 @@
+---
+title: "BOJ - [Basic Algebra - 2576 홀수] - BronzeIII🥉"
+description: "https://www.acmicpc.net/problem/2576 대부분 브론즈 문제중에서는 소스를 하나하나 짚어봐서 얻는게 많아보이진 않다... 일단 재활치료니 내손이 c언어와 다시 친해지는데에 집중해야지 이 문제도 입력받은 수 중에서 홀수의 총합, 홀수의 최솟값을 구하는거라 이..."
+date: "2021-12-20"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Bronze", "Basic_Algebra"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2021-12-20-2576/2576.png"
+---
+
+# 문제
+![](/images/posts/2021-12-20-2576/2576.png)
+[https://www.acmicpc.net/problem/2576](https://www.acmicpc.net/problem/2576)
+
+# 설명
+대부분 브론즈 문제중에서는 소스를 하나하나 짚어봐서 얻는게 많아보이진 않다... 일단 재활치료니 내손이 c언어와 다시 친해지는데에 집중해야지 이 문제도 입력받은 수 중에서 홀수의 총합, 홀수의 최솟값을 구하는거라 이 역시 특별하거나 어려운 부분은 없었다.
+
+# 코드
+
+```c
+#include <stdio.h>
+
+int main() {
+    int odd_total=0,odd_min = 2147483647;
+    for (int i=0; i<7; i++)
+    {
+        int temp;
+        scanf("%d",&temp);
+        if (temp % 2 == 1)
+        {
+            odd_total += temp;
+            if(odd_min > temp)
+                odd_min = temp;
+        }
+    }
+    if (odd_total == 0 && odd_min == 2147483647)
+        printf("-1\n");
+    else
+        printf("%d\n%d\n",odd_total,odd_min);
+    return 0;
+}
+
+```

@@ -1,0 +1,99 @@
+---
+title: "BOJ - [Array - 2448 별찍기 - 11] - GOLD IV🥇"
+description: "https://www.acmicpc.net/problem/2448 이 문제 또한 “2447 - 별찍기 - 10” 와 비슷한 문제로 다양한 모양으로 별을 찍는 문제다. 이번 문제도 2447번과 비슷하게 프랙탈 도형 형태의 별을 찍는데 이번에는 2447번 문제에서 프랙탈 도형의 예시로..."
+date: "2022-12-27"
+category: "백준"
+tags: ["백준", "Array", "백준_Gold"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2022-12-27-2448/2448.png"
+  - "/images/posts/2022-12-27-2448/2447-1.png"
+  - "/images/posts/2022-12-27-2448/2448-1.png"
+  - "/images/posts/2022-12-27-2448/2448-2.png"
+---
+
+# 문제
+
+![](/images/posts/2022-12-27-2448/2448.png)
+[https://www.acmicpc.net/problem/2448](https://www.acmicpc.net/problem/2448)
+
+# 풀이
+
+이 문제 또한 **“2447 - 별찍기 - 10”** 와 비슷한 문제로 다양한 모양으로 별을 찍는 문제다. 
+
+이번 문제도 2447번과 비슷하게 프랙탈 도형 형태의 별을 찍는데 이번에는 2447번 문제에서 프랙탈 도형의 예시로 보여줬던 삼각형 사진을 동일하게 구현해야되는 문제다.
+2447번 문제 : [https://hoshi2710.github.io/%EB%B0%B1%EC%A4%80/2447](https://hoshi2710.github.io/%EB%B0%B1%EC%A4%80/2447)
+
+![](/images/posts/2022-12-27-2448/2447-1.png)
+
+출처 : [https://m.blog.naver.com/jamogenius/220886627296](https://m.blog.naver.com/jamogenius/220886627296)
+
+그러나 2447번 에서 풀었던 방식을 그대로 사용하니 시간 초과에 걸려버렸다.
+
+2447번에서는 먼저 제일 메인인 큰 도형을 만들고 src배열에 그것보다 작은 프랙탈 도형을 만들고 결과물에 붙이기를 반복했는데 이문제에서는 그 과정을 그대로 적용했을때 과정이 더 복잡해지고 더 많은 시간이 소요되어 이번에는 방법을 약간 변형 시켜보았다.
+
+바로 제일 큰 도형을 그리고 난 다음 그 이후 작은 삼각형을 붙이는 대신 삼각형 모양의 공백영역을 계속 만드는 것이다.
+
+![](/images/posts/2022-12-27-2448/2448-1.png)
+
+대충 이런 삼각형을 제일 메인으로 먼저 만든다음
+
+![](/images/posts/2022-12-27-2448/2448-2.png)
+
+이런 모양으로 공백을 넣어 역 삼각형 모양으로 구멍을 뚫고 이를 반복하도록 하는 것이다.
+
+# 소스
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+int main()
+{
+	int height = 0, width = 0, looped = 1;
+	bool** res; //[세로][가로] (False = '*', True = ' ')
+
+	scanf("%d", &height);
+
+	width = height * 2 - 1;
+	int origin_width = width, origin_height = height;
+
+	res = (bool**)malloc(sizeof(bool*) * height);
+	for (int i = 0; i < height; i++)
+	{
+		res[i] = (bool*)malloc(sizeof(bool*) * width);
+		memset(res[i], true, sizeof(bool) * origin_width);
+	}
+
+	for (int j = origin_height - 1; j >= 0; j--) //별찍기
+		memset(res[j] + (origin_height - j - 1), false, sizeof(bool) * (width - ((height - j - 1) * 2)));
+	for (int j = height / 2; j < height; j++) // 가운데 빈칸 삽입
+		memset(res[j] + j + (height == 3 ? 1 : 0), true, sizeof(bool) * ((((width - 1) / 2) - ((j - (height / 2)) * 2)) - (height == 3 && j == 1 ? 1 : 0)));
+
+	while (height != 1)
+	{
+		width = (width - 1) / 2;
+		height /= 2;
+		for (int j = 1; j <= origin_height; j += origin_height / looped)
+			for (int find = origin_width/2 - j; find < origin_width/2+j; find++)
+				if (res[j - 1][find] == false)
+					for (int k = 0; k < height; k++) // 가운데 빈칸 삽입
+						memset(res[j - 1 + k + height] + find - ((width - 1) / 2) + k, true, sizeof(bool) * (height != 1 ? (width - 2 * k) : 1));
+		looped *= 2;
+	}
+
+	for (int i = 0; i < origin_height; i++)
+	{
+		for (int j = 0; j < origin_width; j++)
+			putchar(!res[i][j] ? '*' : ' ');
+		putchar('\n');
+	}
+
+	free(res);
+}
+```
+
+**while 문** 부분에서 연쇄적으로 역삼각형 공백 구멍을 만드는 작업이 이루어 지는데 제일 큰 삼각형의 높이 값을 이용해 1,2,4,8개의 줄로 세로 구역을 나누어 역삼각형이 들어갈 구간을 for문을 이용해 검색하고 최종적으로 공백 역삼각형을 삽입하는 방식이다.

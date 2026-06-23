@@ -1,0 +1,81 @@
+---
+title: "BOJ - [Basic Algebra - 4673 셀프 넘버] - Silver V 🥈"
+description: "https://www.acmicpc.net/problem/4673 이문제도 전에 풀었던 소수 문제와 유사하게 일단 해당하지 않는 수를 거르고 나머지를 출력하는 방식으로 코드를 짰기때문에 10001 의 크기의 배열을 만들고 맞는것 아닌것을 다 표시하여 아닌것을 따로 다시 for문으로..."
+date: "2022-01-19"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Silver", "Basic_Algebra"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2022-01-19-4673/4673.png"
+---
+
+# 문제
+![](/images/posts/2022-01-19-4673/4673.png)
+[https://www.acmicpc.net/problem/4673](https://www.acmicpc.net/problem/4673)
+
+# 설명
+이문제도 전에 풀었던 소수 문제와 유사하게 일단 해당하지 않는 수를 거르고 나머지를 출력하는 방식으로 코드를 짰기때문에 10001 의 크기의 배열을 만들고 맞는것 아닌것을 다 표시하여 아닌것을 따로 다시 for문으로 출력하도록 하였다. 사실 자릿수를 분리하는 부분때문에 길이가 더길어졌다. 그런데 더 줄이는 방법이 있을지는 잘 모르겠다. 일단 맞추긴 했으나 약간 하드코딩을 했다는 느낌이 드는건 어쩔수 없는 듯 하다.
+
+# 코드
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+	int arr[10001];
+	for (int i = 0; i <= 10000; i++)
+		arr[i] = 0;
+	for (int i = 1; i <= 10000; i++)
+	{
+		int line = 0,num[5];
+		if (i < 10)//1의자리 수
+		{
+			line = 1;
+			num[0] = i;
+		}
+		else if (i < 100) //10의 자리 수
+		{
+			line = 2;
+			num[0] = i % 10;
+			num[1] = i/10;
+		}
+		else if (i < 1000) // 100의 자리 수
+		{
+			line = 3;
+			num[2] = i / 100;
+			num[1] = (i - (num[2] * 100)) / 10;
+			num[0] = (i - (num[2] * 100)) % 10;
+		}
+		else if (i < 10000) // 1000의 자리 수
+		{
+			line = 4;
+			num[0] = i % 10;
+			num[1] = (i % 100) / 10;
+			num[2] = (i % 1000) / 100;
+			num[3] = i / 1000;
+		}
+		else // 10000
+		{
+			line = 5;
+			num[4] = 1;
+			for (int j = 0; j <= 3; j++)
+				num[j] = 0;
+		}
+		int temp=0;
+		temp += i;
+		for (int j = 0; j < line; j++)
+			temp += num[j];
+		if (temp <= 10000)
+			arr[temp - 1] = 1;
+	}
+	for (int i = 0; i <10000; i++)
+	{
+		if (arr[i] == 0)
+			printf("%d\n", i + 1);
+	}
+	return 0;
+}
+```

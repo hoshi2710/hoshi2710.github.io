@@ -1,0 +1,44 @@
+---
+title: "BOJ - [Basic Algebra - 2908 상수] - BronzeIII🥉"
+description: "https://www.acmicpc.net/problem/2908 친구랑 같은 문제 주고 각자 풀어보는 김에 basic algebra의 뒷문제부터 풀어봤다. 숫자를 거꾸로 뒤집고 두 수의 대소를 비교하는 문제로 크게 어렵지는 않았다."
+date: "2021-12-22"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Bronze", "Basic_Algebra"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2021-12-22-2908/2908.png"
+---
+
+# 문제
+![](/images/posts/2021-12-22-2908/2908.png)
+[https://www.acmicpc.net/problem/2908](https://www.acmicpc.net/problem/2908)
+
+# 설명
+친구랑 같은 문제 주고 각자 풀어보는 김에 basic algebra의 뒷문제부터 풀어봤다. 숫자를 거꾸로 뒤집고 두 수의 대소를 비교하는 문제로 크게 어렵지는 않았다.
+
+# 코드
+
+```c
+#include <stdio.h>
+
+int main() {
+    int array[2],temp[3];
+    scanf("%d %d",&array[0],&array[1]);
+    for(int i=0; i<2; i++)
+    {
+        temp[0] = array[i]/100; // 100자리
+        temp[1] = (array[i] - (100*temp[0]))/10; //10의 자리
+        temp[2] =  (array[i] % 10); // 1의 자리
+        array[i] = (temp[2]*100) + (temp[1]*10) + temp[0];
+    }
+    if (array[0]<array[1])
+        printf("%d",array[1]);
+    else
+        printf("%d",array[0]);
+    
+    
+    return 0;
+}
+
+```

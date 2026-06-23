@@ -1,0 +1,39 @@
+---
+title: "BOJ - [Basic Algebra - 10797 10부제] - BronzeIV🥉"
+description: "https://www.acmicpc.net/problem/10797 난이도가 매우낮고 정답비율도 매우 높은문제라 더 설명할게 없다... 그냥 입력받은 값을 서로 대조하는소스가 주를 이룸"
+date: "2021-12-21"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Bronze", "Basic_Algebra"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2021-12-21-10797/10797.png"
+---
+
+# 문제
+![](/images/posts/2021-12-21-10797/10797.png)
+[https://www.acmicpc.net/problem/10797](https://www.acmicpc.net/problem/10797)
+
+# 설명
+난이도가 매우낮고 정답비율도 매우 높은문제라 더 설명할게 없다... 그냥 입력받은 값을 서로 대조하는소스가 주를 이룸
+
+# 코드
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main()
+{
+	int num,result = 0;
+	scanf("%d", &num);
+	for (int i = 0; i < 5; i++)
+	{
+		int temp;
+		scanf("%d", &temp);
+		if (num == temp)
+			result++;
+	}
+	printf("%d", result);
+	return 0;
+}
+```

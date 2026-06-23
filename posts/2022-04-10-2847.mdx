@@ -1,0 +1,51 @@
+---
+title: "BOJ - [Array - 2847 게임을 만든 동준이] - Silver IV 🥈"
+description: "https://www.acmicpc.net/problem/2847 문제 자체에 사용된 알고리즘는 어렵지는 않다. 사실상 배열이 오름차순이 되도록 정렬이 아닌 수 자체를 뺄셈을 수행하는 것인데 이 과정에서 총 뺀 수의 합을 구하는 문제였다. 나의 경우에는 무식하게 for문과 whil..."
+date: "2022-04-10"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Silver", "Array"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2022-04-10-2847/2847.png"
+---
+
+# 문제
+![](/images/posts/2022-04-10-2847/2847.png)
+[https://www.acmicpc.net/problem/2847](https://www.acmicpc.net/problem/2847)
+
+# 설명
+문제 자체에 사용된 알고리즘는 어렵지는 않다. 사실상 배열이 오름차순이 되도록 정렬이 아닌 수 자체를 뺄셈을 수행하는 것인데 이 과정에서 총 뺀 수의 합을 구하는 문제였다. 나의 경우에는 무식하게 for문과 while문을 조합하여 무작정 오름차순 배열이 될때까지 뺄셈을 무한 반복하도록 하였다. 알고리즘자체는 굉장히 무식하지만 실버난이도의 문제해서는 사용해도 지장이 없으므로 이렇게 폴었다.
+
+# 코드
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+	int n,arr[100],count=0,error=1;
+	scanf("%d", &n);
+	for (int i = 0; i < n; i++)
+		scanf("%d", &arr[i]);
+	while (error == 1)
+	{
+		error = 0;
+		for (int i = 0; i < n; i++)
+		{
+			if (i != 0)
+			{
+				error = arr[i - 1] < arr[i] ? error : 1;
+				while (!(arr[i - 1] < arr[i]))
+				{
+					arr[i - 1]--;
+					count++;
+				}
+			}
+		}
+	}
+	printf("%d", count);
+	return 0;
+}
+```

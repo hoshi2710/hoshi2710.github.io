@@ -1,0 +1,39 @@
+---
+title: "BOJ - [Basic Algebra - 10833 사과] - Bronze III 🥉"
+description: "https://www.acmicpc.net/problem/10833 그냥 사과를 학생들에게 나눠주고 남은 사과의 총합을 구하는 것 이므로 그냥 mod(%)를 이용해 나머지를 구해 모두 더해 출력하도록 하면 끝이다."
+date: "2022-01-19"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Bronze", "Basic_Algebra"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2022-01-19-10833/10833.png"
+---
+
+# 문제
+![](/images/posts/2022-01-19-10833/10833.png)
+[https://www.acmicpc.net/problem/10833](https://www.acmicpc.net/problem/10833)
+
+# 설명
+그냥 사과를 학생들에게 나눠주고 남은 사과의 총합을 구하는 것 이므로 그냥 mod(%)를 이용해 나머지를 구해 모두 더해 출력하도록 하면 끝이다.
+
+# 코드
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main()
+{
+	int t = 0,res=0;
+	scanf("%d", &t);
+	for (int i = 0; i < t; i++)
+	{
+		int stu = 0, apple = 0;
+		scanf("%d %d", &stu, &apple);
+		res += apple % stu;
+	}
+	printf("%d", res);
+	return 0;
+}
+```

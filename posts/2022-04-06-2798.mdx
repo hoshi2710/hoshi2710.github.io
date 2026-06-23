@@ -1,0 +1,47 @@
+---
+title: "BOJ - [Array - 2798 블랙잭] - Bronze II 🥉"
+description: "https://www.acmicpc.net/problem/2798 이문제는 딱히 거창한 알고리즘은 쓸 필요가 없었다. 그냥 삼중(?!)for문을 이용해 노가다로 3개의 패의 값을 더하고 max변수에 있는 값보다 크고 총 합이 21을 넘지 않는지만 검사하도록 하였기때문에 크게 어려운..."
+date: "2022-04-06"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Bronze", "Array"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2022-04-06-2798/2798.png"
+---
+
+# 문제
+![](/images/posts/2022-04-06-2798/2798.png)
+[https://www.acmicpc.net/problem/2798](https://www.acmicpc.net/problem/2798)
+
+# 설명
+이문제는 딱히 거창한 알고리즘은 쓸 필요가 없었다. 그냥 삼중(?!)for문을 이용해 노가다로 3개의 패의 값을 더하고 max변수에 있는 값보다 크고 총 합이 21을 넘지 않는지만 검사하도록 하였기때문에 크게 어려운 부분은 없었다. 단지 흠이라면 어차피 브론즈 단계에서는 상관 없을 것 같긴 하지만 너무 무식하게 반복문을 중첩하여 풀었다는 느낌이 강하게 들긴한다...
+
+# 코드
+
+```c
+#include <stdio.h>
+
+int main() {
+    int n,m;    //카드 갯수 , 외칠 숫자
+    int card[100]; //카드 패
+    scanf("%d %d",&n,&m); //카드 갯수, 외칠 숫자 입력
+    for(int i=0; i<n; i++)
+        scanf("%d",&card[i]);   //패 입력
+    int max = 0;
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            for(int k=j+1; k<n; k++)
+            {
+                int temp = card[i] + card[j] + card[k];
+                max = (temp>max) && (temp <= m) ? temp : max;
+            }
+        }
+    }
+    printf("%d",max);
+    return 0;
+}
+
+```

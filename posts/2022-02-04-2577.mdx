@@ -1,0 +1,58 @@
+---
+title: "BOJ - [Array - 2577 숫자의 개수] - Bronze II 🥉"
+description: "https://www.acmicpc.net/problem/2577 최근에 헬스랑 배민 배달즘 뛰느라 바빠서 백준을 못건들고 있었다.... 이제 들어가는 Array문제집의 첫문제. 입력값으로 1001000 의 수를 받아서 세개의 수를 곱해서 나오는 수에서 각자리의 숫자의 갯수를 세는..."
+date: "2022-02-04"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Bronze", "Array"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2022-02-04-2577/2577.png"
+---
+
+# 문제
+![](/images/posts/2022-02-04-2577/2577.png)
+[https://www.acmicpc.net/problem/2577](https://www.acmicpc.net/problem/2577)
+
+# 설명
+최근에 헬스랑 배민 배달즘 뛰느라 바빠서 백준을 못건들고 있었다.... 이제 들어가는 Array문제집의 첫문제. 입력값으로 100~1000 의 수를 받아서 세개의 수를 곱해서 나오는 수에서 각자리의 숫자의 갯수를 세는 문제다. 나는 그래서 일단 3 개를 곱해서 저장하고 int형인 그 변수를 string 문자열로 변환하였다. 그런다음 output 배열에 저장하도록 하였다. 대신 string일때 숫자와 int일때의 숫자는 아스키 코드 상으로 다르므로 -48 을 하여 서로의 값을 보정하여 결과값을 저장하도록 하였다. 시간날때마다 계속 문제 달려봐야겠다.
+
+# 코드
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+	int input = 1, output[11] = {0,0,0,0,0,0,0,0,0,0,0};
+	char converted[20];
+	for (int i = 0; i < 3; i++)
+	{
+		int temp1 = 0;
+		scanf("%d", &temp1);
+		input *= temp1;
+	}
+	int j = 9;
+	while(1)
+	{
+		int temp2 = pow(10, j);
+		if (input % temp2 != input)
+			break;
+		else
+			j--;
+	}
+	j++;
+	sprintf(converted, "%d", input);
+	for (int i = 0; i < j; i++)
+		output[converted[i] - 48]++;
+	for (int i = 0; i < 10; i++)
+		printf("%d\n", output[i]);
+	
+		
+	
+
+	return 0;
+}
+```

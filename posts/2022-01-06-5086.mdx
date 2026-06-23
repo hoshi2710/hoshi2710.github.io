@@ -1,0 +1,47 @@
+---
+title: "BOJ - [Basic Algebra - 5086 배수와 약수] - Bronze III 🥉"
+description: "https://www.acmicpc.net/problem/5086 두수가 입력될때 배수와 약수 관계를 구하는 문제이며 나머지 연산자(%)를 이용하여 풀기 좋은 문제였다. 두번째 수를 첫번째 수로 나누었을때 나머지가 0 이면 factor(약수) 첫번째 수를 두번째 수로 나누었을때 나..."
+date: "2022-01-06"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Bronze", "Basic_Algebra"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2022-01-06-5086/5086.png"
+---
+
+# 문제
+![](/images/posts/2022-01-06-5086/5086.png)
+[https://www.acmicpc.net/problem/5086](https://www.acmicpc.net/problem/5086)
+
+# 설명
+두수가 입력될때 배수와 약수 관계를 구하는 문제이며 나머지 연산자(%)를 이용하여 풀기 좋은 문제였다.
+두번째 수를 첫번째 수로 나누었을때 나머지가 0 이면 factor(약수) 첫번째 수를 두번째 수로 나누었을때 나머지가 0ㄹ라면 multiple(배수) 두개 모두 아니라면 neither를 출력하도록 하고 두수가 모두 0 이라면 프로그램이 종료되도록 하였다.
+
+# 코드
+
+```c
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main()
+{
+	while (1)
+	{
+		int a, b;
+		scanf("%d %d", &a, &b);
+		if (a == 0 && b == 0)
+			break;
+		else
+		{
+			if (b % a == 0)
+				printf("factor");
+			else if (a % b == 0)
+				printf("multiple");
+			else
+				printf("neither");
+			printf("\n");
+		}
+	}
+	return 0;
+}
+```

@@ -1,0 +1,46 @@
+---
+title: "BOJ - [Basic Algebra - 10039 0 = not cute / 1 = cute] - BronzeIII🥉"
+description: "https://www.acmicpc.net/problem/10886 이 문제도 크게 설명할 부분은 없어보인다. 그냥 투표값 1,0의 갯수만 분리하고 두개의 값만 비교하는게 끝."
+date: "2021-12-19"
+category: "백준"
+tags: ["백준", "블로그오픈전", "백준_Bronze", "Basic_Algebra"]
+featured: false
+readingTime: "1분 읽기"
+images:
+  - "/images/posts/2021-12-19-10886/10886.png"
+---
+
+# 문제
+![](/images/posts/2021-12-19-10886/10886.png)
+[https://www.acmicpc.net/problem/10886](https://www.acmicpc.net/problem/10886)
+
+# 설명
+이 문제도 크게 설명할 부분은 없어보인다. 그냥 투표값 1,0의 갯수만 분리하고 두개의 값만 비교하는게 끝.
+
+# 코드
+
+```c
+#include <stdio.h>
+
+int main() {
+    int n,cute=0,n_cute=0;
+    scanf("%d",&n);
+    for (int i=0; i<n;i++)
+    {
+        int temp;
+        scanf("%d",&temp);
+        if (temp == 1)
+            cute++;
+        else if (temp == 0)
+            n_cute++;
+    }
+    if (cute > n_cute)
+        printf("Junhee is cute!\n");
+    else
+        printf("Junhee is not cute!\n");
+    
+    
+    return 0;
+}
+
+```
