@@ -1,24 +1,27 @@
 ---
-title: "BOJ - [Array - 4344 평균은 넘겠지] - Bronze I 🥉"
-description: "https://www.acmicpc.net/problem/4344 각 케이스별로 평균을 넘는 점수를 가진 사람이 몇 % 인지 구하는 문제이므로 일단 for문으로 여러개의 케이스를 받을 수 있도록 하고 중첩으로 for문을 넣어 점수를 입력받는 동시에 score배열에 저장하고 tota..."
-date: "2022-02-18"
-category: "백준"
-tags: ["백준", "블로그오픈전", "백준_Bronze", "Array"]
+page_id: 38aa954b-2063-8193-810d-ca723771c5ac
+title: BOJ - [Array - 4344 평균은 넘겠지] - Bronze I 🥉
+slug: 2022-02-18-4344
 featured: false
-readingTime: "1분 읽기"
-images:
-  - "/images/posts/2022-02-18-4344/4344.png"
+description: https://www.acmicpc.net/problem/4344 각 케이스별로 평균을 넘는 점수를 가진 사람이 몇 % 인지
+  구하는 문제이므로 일단 for문으로 여러개의 케이스를 받을 수 있도록 하고 중첩으로 for문을 넣어 점수를 입력받는 동시에 score배열에 저장하고
+  tota...
+category: 백준
+tags:
+- 백준
+- 블로그오픈전
+- 백준_Bronze
+- Array
+date: '2022-02-18'
+content_hash: 14ca460fe955d44e8a04c80a86076cb646120ebb333baf6a68bc24ca4b54b295
 ---
 
 # 문제
 ![](/images/posts/2022-02-18-4344/4344.png)
 [https://www.acmicpc.net/problem/4344](https://www.acmicpc.net/problem/4344)
-
 # 설명
 각 케이스별로 평균을 넘는 점수를 가진 사람이 몇 % 인지 구하는 문제이므로 일단 for문으로 여러개의 케이스를 받을 수 있도록 하고 중첩으로 for문을 넣어 점수를 입력받는 동시에 score배열에 저장하고 total변수에 더하여 평균을 구할 수 있도록 하고 다시한번 for문 을 이용하여 평균을 넘는 사람이 몇명인지 센 다음 최종적으로 몇 퍼센트의 사람이 평균을 넘는지 출력하도록 하였다.
-
 # 코드
-
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>

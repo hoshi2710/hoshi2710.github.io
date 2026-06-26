@@ -2,17 +2,13 @@ import Link from "next/link";
 import { Github, Mail } from "lucide-react";
 import { PostCard } from "@/components/PostCard";
 import { getLatestPosts, getTags } from "@/lib/posts";
+import { getFeaturedProjects } from "@/lib/projects";
 import { siteConfig } from "@/lib/site";
-
-const projects = [
-  ["SDVX OCR", "Python, OpenCV"],
-  ["LMS 시스템", "JSP, MySQL"],
-  ["UDP File Transfer", "C, WinSock"],
-];
 
 export default function HomePage() {
   const latestPosts = getLatestPosts(4);
   const tags = getTags().slice(0, 8);
+  const projects = getFeaturedProjects();
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_17rem]">
@@ -90,13 +86,17 @@ export default function HomePage() {
             최근 프로젝트
           </h2>
           <div className="mt-4 space-y-4">
-            {projects.map(([title, stack]) => (
-              <Link key={title} href="/portfolio" className="block text-sm">
+            {projects.map((project) => (
+              <Link
+                key={project.slug}
+                href={`/portfolio/${project.slug}`}
+                className="block text-sm"
+              >
                 <strong className="block font-medium text-slate-900 dark:text-slate-200">
-                  {title}
+                  {project.title}
                 </strong>
                 <span className="mt-1 block text-slate-500 dark:text-slate-500">
-                  {stack}
+                  {project.stack.join(", ")}
                 </span>
               </Link>
             ))}

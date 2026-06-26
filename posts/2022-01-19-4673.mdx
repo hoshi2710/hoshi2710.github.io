@@ -1,24 +1,27 @@
 ---
-title: "BOJ - [Basic Algebra - 4673 셀프 넘버] - Silver V 🥈"
-description: "https://www.acmicpc.net/problem/4673 이문제도 전에 풀었던 소수 문제와 유사하게 일단 해당하지 않는 수를 거르고 나머지를 출력하는 방식으로 코드를 짰기때문에 10001 의 크기의 배열을 만들고 맞는것 아닌것을 다 표시하여 아닌것을 따로 다시 for문으로..."
-date: "2022-01-19"
-category: "백준"
-tags: ["백준", "블로그오픈전", "백준_Silver", "Basic_Algebra"]
+page_id: 38aa954b-2063-8173-bf25-ca870d58ba39
+title: BOJ - [Basic Algebra - 4673 셀프 넘버] - Silver V 🥈
+slug: 2022-01-19-4673
 featured: false
-readingTime: "1분 읽기"
-images:
-  - "/images/posts/2022-01-19-4673/4673.png"
+description: https://www.acmicpc.net/problem/4673 이문제도 전에 풀었던 소수 문제와 유사하게 일단 해당하지
+  않는 수를 거르고 나머지를 출력하는 방식으로 코드를 짰기때문에 10001 의 크기의 배열을 만들고 맞는것 아닌것을 다 표시하여 아닌것을 따로 다시
+  for문으로...
+category: 백준
+tags:
+- 백준
+- 블로그오픈전
+- 백준_Silver
+- Basic_Algebra
+date: '2022-01-19'
+content_hash: fb6ff8f1ee7bcba33eb5a0f64e5ae60007b64b6d39079bf69df429a010074463
 ---
 
 # 문제
 ![](/images/posts/2022-01-19-4673/4673.png)
 [https://www.acmicpc.net/problem/4673](https://www.acmicpc.net/problem/4673)
-
 # 설명
 이문제도 전에 풀었던 소수 문제와 유사하게 일단 해당하지 않는 수를 거르고 나머지를 출력하는 방식으로 코드를 짰기때문에 10001 의 크기의 배열을 만들고 맞는것 아닌것을 다 표시하여 아닌것을 따로 다시 for문으로 출력하도록 하였다. 사실 자릿수를 분리하는 부분때문에 길이가 더길어졌다. 그런데 더 줄이는 방법이 있을지는 잘 모르겠다. 일단 맞추긴 했으나 약간 하드코딩을 했다는 느낌이 드는건 어쩔수 없는 듯 하다.
-
 # 코드
-
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>

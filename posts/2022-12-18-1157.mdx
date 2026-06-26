@@ -1,42 +1,35 @@
 ---
-title: "BOJ - [String - 1157 단어 공부 ] - BRONZE I 🥉"
-description: "https://www.acmicpc.net/problem/1157 위와 같은 코드로  for문에 strlen 함수를 활용하면 반복문이 반복될때마다 strlen 함수를 통해서 계속 문자열의 길이를 구해오기떄문에 시간이 더 오래걸리게 된다."
-date: "2022-12-18"
-category: "백준"
-tags: ["백준", "String", "백준_Bronze"]
+page_id: 38aa954b-2063-81a8-adfd-f0f00d3d9947
+title: BOJ - [String - 1157 단어 공부 ] - BRONZE I 🥉
+slug: 2022-12-18-1157
 featured: false
-readingTime: "1분 읽기"
-images:
-  - "/images/posts/2022-12-18-1157/1157.png"
+description: https://www.acmicpc.net/problem/1157 위와 같은 코드로  for문에 strlen 함수를 활용하면
+  반복문이 반복될때마다 strlen 함수를 통해서 계속 문자열의 길이를 구해오기떄문에 시간이 더 오래걸리게 된다.
+category: 백준
+tags:
+- 백준
+- String
+- 백준_Bronze
+date: '2022-12-18'
+content_hash: b07a095e8ec2cdd90d8399003480b3cd9576a895fcc44e544d0784347be8cb68
 ---
 
-# 문제 
+# 문제
 ![](/images/posts/2022-12-18-1157/1157.png)
 [https://www.acmicpc.net/problem/1157](https://www.acmicpc.net/problem/1157)
-
 # 설명
-
 ```c
 for (int i=0; i<strlen(var); i++){
 	...
 }
 ```
-
-위와 같은 코드로  for문에 strlen 함수를 활용하면 
-
-반복문이 반복될때마다 strlen 함수를 통해서 계속 문자열의 길이를 구해오기떄문에 
-
-**시간이 더 오래걸리게 된다.**
-
-미리 다른 변수에 **strlen 함수**를 통해서 문자열의 길이를 구한다음 
-
+위와 같은 코드로  for문에 strlen 함수를 활용하면
+반복문이 반복될때마다 strlen 함수를 통해서 계속 문자열의 길이를 구해오기떄문에
+\*\*시간이 더 오래걸리게 된다.\*\*
+미리 다른 변수에 \*\*strlen 함수\*\*를 통해서 문자열의 길이를 구한다음
 그 값을 활용하는게 시간단축에 더 도움이 된다.
-
-**참고 자료 : [https://www.acmicpc.net/board/view/102628](https://www.acmicpc.net/board/view/102628)
-문제 : [https://www.acmicpc.net/problem/1157](https://www.acmicpc.net/problem/1157)**
-
+\*\*참고 자료 : [https://www.acmicpc.net/board/view/102628](https://www.acmicpc.net/board/view/102628)<br>문제 : [https://www.acmicpc.net/problem/1157](https://www.acmicpc.net/problem/1157)\*\*
 # 코드
-
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>

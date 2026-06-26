@@ -1,24 +1,27 @@
 ---
-title: "BOJ - [Array - 1475 방 번호] - Silver V 🥈"
-description: "https://www.acmicpc.net/problem/1475 문제는 사실상 입력된 값의 각자릿수의 수를 숫자별로 카운트 하여 카운트 된 값중 제일 최대값을 출력하면 되나, 여기서는 6과 9는 동일한 수로 취급해야하는 조건이 존재하므로 그부분을 감안하여 카운트 하도록 해야됐다...."
-date: "2022-04-01"
-category: "백준"
-tags: ["백준", "블로그오픈전", "백준_Silver", "Array"]
+page_id: 38aa954b-2063-8146-aa5c-d3e5a50f2571
+title: BOJ - [Array - 1475 방 번호] - Silver V 🥈
+slug: 2022-04-01-1475
 featured: false
-readingTime: "1분 읽기"
-images:
-  - "/images/posts/2022-04-01-1475/1475.png"
+description: https://www.acmicpc.net/problem/1475 문제는 사실상 입력된 값의 각자릿수의 수를 숫자별로 카운트
+  하여 카운트 된 값중 제일 최대값을 출력하면 되나, 여기서는 6과 9는 동일한 수로 취급해야하는 조건이 존재하므로 그부분을 감안하여 카운트 하도록
+  해야됐다....
+category: 백준
+tags:
+- 백준
+- 블로그오픈전
+- 백준_Silver
+- Array
+date: '2022-04-01'
+content_hash: 428edcf4e59bf131e9ef02f30d0a44681aa4e9e9998c8a6bf69df215eb84b430
 ---
 
 # 문제
 ![](/images/posts/2022-04-01-1475/1475.png)
 [https://www.acmicpc.net/problem/1475](https://www.acmicpc.net/problem/1475)
-
 # 설명
 문제는 사실상 입력된 값의 각자릿수의 수를 숫자별로 카운트 하여 카운트 된 값중 제일 최대값을 출력하면 되나, 여기서는 6과 9는 동일한 수로 취급해야하는 조건이 존재하므로 그부분을 감안하여 카운트 하도록 해야됐다. 따라서 나의 경우 6과 9는 따로 조건문을 이용해 분별하여 6이나 9가 나오면 6의 갯수와 9의 갯수는 동일하게 +1하여 동일한 카운트 수를 유지하도록하고 최종적으로 카운트 된 전체수의 최댓값을 구하여 출력하도록 하였다.
-
 # 코드
-
 ```c
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
