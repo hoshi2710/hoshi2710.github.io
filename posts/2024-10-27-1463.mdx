@@ -20,13 +20,13 @@ content_hash: f6d939a329d899f475c04d67c61645628d50f865bfc9b28ac3095de19102a0d4
 ![Problem](/images/posts/2024-10-27-1463/1463.png)
 [https://www.acmicpc.net/problem/1463](https://www.acmicpc.net/problem/1463)
 - \*\*문제 설명\*\*:
-n값이 주어지면 3개의 과정중 하나를 고르는 과정을 반복하여 1에 도달하기까지 최소 계산 횟수를 구하는 문제.<br>선택 가능한 과정이 2개였다면 이진 트리 탐색이나 고등학교 확률과 통계 과목에서 배우는 ‘같은 것이 있는 순열’ 개념을 활용하여 수학적으로 풀수 있다.<br>그러나 이문제는 과정이 3개이므로 이진트리는 해당사항이 없고, 수학적으로 풀기에는 알고리즘이 매우 복잡해질 가능성이 높다.<br>따라서 기본적으로 깊이 우선으로 트리를 탐색(DFS)하도록 하고 다이나믹 프로그래밍(DP)를 활용하여 최적화를 진행하였다.
+n값이 주어지면 3개의 과정중 하나를 고르는 과정을 반복하여 1에 도달하기까지 최소 계산 횟수를 구하는 문제.<br />선택 가능한 과정이 2개였다면 이진 트리 탐색이나 고등학교 확률과 통계 과목에서 배우는 ‘같은 것이 있는 순열’ 개념을 활용하여 수학적으로 풀수 있다.<br />그러나 이문제는 과정이 3개이므로 이진트리는 해당사항이 없고, 수학적으로 풀기에는 알고리즘이 매우 복잡해질 가능성이 높다.<br />따라서 기본적으로 깊이 우선으로 트리를 탐색(DFS)하도록 하고 다이나믹 프로그래밍(DP)를 활용하여 최적화를 진행하였다.
 - 사용 알고리즘 : DP, DFS
 # 2. 풀이
 ## 2.1. 초기 코드
 - \*\*코드\*\*:
-\`\`\`java<br>// 최적화 되지않은 DFS (전수조사)<br>import java.io.\*;
-public class Main<br>\{<br>static int minDepth = 1000000;<br>static void search(int n,int depth) \{<br>if (n == 1) \{<br>minDepth = Math.min(depth, minDepth);<br>return;<br>\}<br>for(int i=0; i\<2; i+=1)<br>if(n%(3-i) == 0) search(n/(3-i), depth+1);<br>search(n-1,depth+1);<br>\}<br>public static void main(String\[\] args) throws IOException \{<br>BufferedReader br = new BufferedReader(new InputStreamReader(System.in));<br>BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));<br>int n = Integer.parseInt(br.readLine());<br>search(n,0);<br>bw.write(Integer.toString(minDepth));<br>bw.flush();<br>bw.close();<br>\}<br>\}<br>\`\`\`
+\`\`\`java<br />// 최적화 되지않은 DFS (전수조사)<br />import java.io.\*;
+public class Main<br />\{<br />static int minDepth = 1000000;<br />static void search(int n,int depth) \{<br />if (n == 1) \{<br />minDepth = Math.min(depth, minDepth);<br />return;<br />\}<br />for(int i=0; i\<2; i+=1)<br />if(n%(3-i) == 0) search(n/(3-i), depth+1);<br />search(n-1,depth+1);<br />\}<br />public static void main(String\[\] args) throws IOException \{<br />BufferedReader br = new BufferedReader(new InputStreamReader(System.in));<br />BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));<br />int n = Integer.parseInt(br.readLine());<br />search(n,0);<br />bw.write(Integer.toString(minDepth));<br />bw.flush();<br />bw.close();<br />\}<br />\}<br />\`\`\`
 - \*\*문제점\*\*:
 - 오직 DFS 만으로 1을 만들수 있는 모든 경우를 전수 조사 함으로써 n값이 커질수록 실행시간이 기하 급수적으로 증가하게 된다.
 - 결과 : 시간 초과
@@ -36,8 +36,8 @@ public class Main<br>\{<br>static int minDepth = 1000000;<br>static void search(
 - \*\*변경\*\*: 노드 탐색 중 현재까지의 최소 작업 횟수보다 더 깊은 노드의 탐색시 탐색 작업을 즉시 종료
 ## 2.3. 최적화된 코드 (1차)
 - \*\*코드\*\*:
-\`\`\`java<br>// DFS 최적화 (1차)<br>import java.io.\*;
-public class Main<br>\{<br>static int minDepth = 1000000;<br>static void search(int n,int depth) \{<br>if (n == 1) \{<br>minDepth = Math.min(depth, minDepth);<br>return;<br>\}<br>//추가되어진 조건<br>if (minDepth == depth) return;<br>for(int i=0; i\<2; i+=1)<br>if(n%(3-i) == 0) search(n/(3-i), depth+1);<br>search(n-1,depth+1);<br>\}<br>public static void main(String\[\] args) throws IOException \{<br>BufferedReader br = new BufferedReader(new InputStreamReader(System.in));<br>BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));<br>int n = Integer.parseInt(br.readLine());<br>search(n,0);<br>bw.write(Integer.toString(minDepth));<br>bw.flush();<br>bw.close();<br>\}<br>\}<br>\`\`\`
+\`\`\`java<br />// DFS 최적화 (1차)<br />import java.io.\*;
+public class Main<br />\{<br />static int minDepth = 1000000;<br />static void search(int n,int depth) \{<br />if (n == 1) \{<br />minDepth = Math.min(depth, minDepth);<br />return;<br />\}<br />//추가되어진 조건<br />if (minDepth == depth) return;<br />for(int i=0; i\<2; i+=1)<br />if(n%(3-i) == 0) search(n/(3-i), depth+1);<br />search(n-1,depth+1);<br />\}<br />public static void main(String\[\] args) throws IOException \{<br />BufferedReader br = new BufferedReader(new InputStreamReader(System.in));<br />BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));<br />int n = Integer.parseInt(br.readLine());<br />search(n,0);<br />bw.write(Integer.toString(minDepth));<br />bw.flush();<br />bw.close();<br />\}<br />\}<br />\`\`\`
 - \*\*코드 설명\*\*:
 - 노드를 모두 탐색하되, 탐색하려는 노드의 깊이(Depth)가 마지막으로 구한 1을 만들기 위한
 최소 깊이를 초과하는 경우 과정을 중단하도록 하여 실행 시간을 단축 시켰음.
@@ -59,8 +59,8 @@ public class Main<br>\{<br>static int minDepth = 1000000;<br>static void search(
 - \*\*변경\*\*: 계산한 최소 계산 횟수를 별도로 기록하고, 동일한 수를 가진 노드의 최소 계산 횟수를 구할때 다시 계산하지 않고 이미 구한 값을 활용하도록 수정
 ## 2.6. 최적화된 코드(2차)
 - \*\*코드\*\*:
-\`\`\`java<br>// DFS 최적화 (2차)<br>import java.io.\*;
-public class Main<br>\{<br>static int minDepth = 1000000;<br>static int\[\] depthDict;<br>static int search(int n,int depth) \{<br>if (n == 1) \{<br>minDepth = Math.min(depth, minDepth);<br>return 1;<br>\}<br>if(minDepth == depth) return 0;<br>if (depthDict\[n-1\] != 0) \{<br>minDepth = Math.min(depth+depthDict\[n-1\], minDepth);<br>return depthDict\[n-1\]+1;<br>\}<br>int partialMinDepth = 1000000;<br>for(int i=0; i\<2; i+=1)<br>if(n%(3-i) == 0) \{<br>int tmp = search(n/(3-i), depth+1);<br>if(tmp == 0) continue;<br>partialMinDepth = Math.min(tmp,partialMinDepth);<br>\}<br>int tmp = search(n-1,depth+1);<br>if (tmp != 0) partialMinDepth = Math.min(tmp,partialMinDepth);<br>if (partialMinDepth != 1000000) depthDict\[n-1\] = partialMinDepth;<br>return partialMinDepth+1;<br>\}<br>public static void main(String\[\] args) throws IOException \{<br>BufferedReader br = new BufferedReader(new InputStreamReader(System.in));<br>BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));<br>int n = Integer.parseInt(br.readLine());<br>depthDict = new int\[n\];<br>search(n,0);<br>bw.write(Integer.toString(minDepth));<br>bw.flush();<br>bw.close();<br>\}<br>\}<br>\`\`\`
+\`\`\`java<br />// DFS 최적화 (2차)<br />import java.io.\*;
+public class Main<br />\{<br />static int minDepth = 1000000;<br />static int\[\] depthDict;<br />static int search(int n,int depth) \{<br />if (n == 1) \{<br />minDepth = Math.min(depth, minDepth);<br />return 1;<br />\}<br />if(minDepth == depth) return 0;<br />if (depthDict\[n-1\] != 0) \{<br />minDepth = Math.min(depth+depthDict\[n-1\], minDepth);<br />return depthDict\[n-1\]+1;<br />\}<br />int partialMinDepth = 1000000;<br />for(int i=0; i\<2; i+=1)<br />if(n%(3-i) == 0) \{<br />int tmp = search(n/(3-i), depth+1);<br />if(tmp == 0) continue;<br />partialMinDepth = Math.min(tmp,partialMinDepth);<br />\}<br />int tmp = search(n-1,depth+1);<br />if (tmp != 0) partialMinDepth = Math.min(tmp,partialMinDepth);<br />if (partialMinDepth != 1000000) depthDict\[n-1\] = partialMinDepth;<br />return partialMinDepth+1;<br />\}<br />public static void main(String\[\] args) throws IOException \{<br />BufferedReader br = new BufferedReader(new InputStreamReader(System.in));<br />BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));<br />int n = Integer.parseInt(br.readLine());<br />depthDict = new int\[n\];<br />search(n,0);<br />bw.write(Integer.toString(minDepth));<br />bw.flush();<br />bw.close();<br />\}<br />\}<br />\`\`\`
 - \*\*코드 설명\*\*:
 - 1차 코드에 추가로 DP 개념을 적용.
 각 노드로 부터 1까지의 최소 과정횟수를 별도로 배열에 저장하고, 동일한 수 노드 검사시 저장한 최소 횟수값을 불러와 중복계산을 방지하였다.

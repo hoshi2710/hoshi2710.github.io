@@ -9,7 +9,10 @@ import {
   getProjectSlugs,
 } from "@/lib/projects";
 
-export function generateStaticParams() {
+export const dynamic = "force-static";
+export const dynamicParams = false;
+
+export function generateStaticParams(): { slug: string }[] {
   return getProjectSlugs().map((slug) => ({ slug }));
 }
 

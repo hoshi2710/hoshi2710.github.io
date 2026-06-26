@@ -28,6 +28,15 @@ def calc_hash(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+standard_mkdn_elements = {"<br>": "<br />"}
+
+
+def standardization_markdown(mkdn):
+    for key, val in standard_mkdn_elements.items():
+        mkdn.replace(key, val)
+    return mkdn
+
+
 def read_existing_mdx_files():
     mdx_map = {}
     if not projects_mdx_dir.exists():
@@ -281,5 +290,6 @@ for record in results:
     tmp["common_files"] = [f["local"].split("/")[-1] for f in replace_files_url]
     tmp["contents"] = replace_image_urls(tmp["contents"], replace_images_url)
     tmp["contents"] = replace_file_urls(tmp["contents"], replace_files_url)
+    tmp["contents"] = standardization_markdown(tmp["contents"])
     records.append(tmp)
 sync_records_to_mdx(records)
