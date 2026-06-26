@@ -18,12 +18,16 @@ jobs:
           cd pipeline
           python -m pip install -r requirements.txt
       - name: Run sync posts script
-        run: python sync_posts_from_notion.py
+        run: |
+          cd pipeline
+          python sync_posts_from_notion.py
         env:
           NOTION_API_KEY: ${{secrets.NOTION_API_KEY}}
           NOTION_POSTS_DB_ID: ${{secrets.NOTION_POSTS_DB_ID}}
       - name: Run sync projects script
-        run: python sync_projects_from_notion.py
+        run: |
+          cd pipeline
+          python sync_projects_from_notion.py
         env:
           NOTION_API_KEY: ${{secrets.NOTION_API_KEY}}
           NOTION_PROJECTS_DB_ID: ${{secrets.NOTION_PROJECTS_DB_ID}}
